@@ -20,7 +20,7 @@ console.log(time);
 var strtime = String(time);
 
 net.train(container, {
-    iterations:2000,
+    iterations:20000,
     log: (stats)=>console.log(stats)
 });
 var newtime = Math.floor(Date.now() / 1000);

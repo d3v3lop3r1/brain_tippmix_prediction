@@ -1,10 +1,10 @@
 const brain = require("brain.js");
-const datas = require("./data_new.json");
+const datas = require("./eredmenyek_winner.json");
 const fs = require("fs");
 
 
 //const net = new brain.NeuralNetwork();
-const net = new brain.recurrent.RNNTimeStep();
+const net = new brain.recurrent.LSTMTimeStep;
 
 var container = [];
 for (var id in datas) {
@@ -20,7 +20,7 @@ console.log(time);
 var strtime = String(time);
 
 net.train(container, {
-    iterations:2000,
+    iterations:20000,
     log: (stats)=>console.log(stats)
 });
 var newtime = Math.floor(Date.now() / 1000);
@@ -32,9 +32,9 @@ console.log(`A számoláshoz ${worktime} másodperc kellett.`);
 // save json data
 const json = net.toJSON();
 // write to file system
-fs.writeFileSync(`trained-net_${strtime}_goal_RNNTimeStep.json`, JSON.stringify(json), 'utf8');
+fs.writeFileSync(`trained-net_${strtime}_goal_LSTMTimeStep.json`, JSON.stringify(json), 'utf8');
 
-fs.writeFileSync(`trained-net_${strtime}_goal_RNNTimeStep.js`, `module.exports = ${ net.toFunction().toString() };`);
+fs.writeFileSync(`trained-net_${strtime}_goal_LSTMTTimeStep.js`, `module.exports = ${ net.toFunction().toString() };`);
 
 
 

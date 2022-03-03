@@ -1,9 +1,15 @@
 const brain = require("brain.js");
 //const json = require("./data_new.json");
 //const fs = require("fs");
-const trainedNet = require('./trained-net_1646019188710_goal.js');
+const trainedNet = require('./trained-net_1646334736_goal_LSTMTimeStep.js');
 const getoddsdata = require('./getoddsdata.js')
-const sorszamok = [12909, 44685, 24765, 19650, 26724, 60591, 67314, 67606, 67654, 67751, 67799];
+const sorszamok = [7945,
+    19173,
+    6083,
+    13064,
+    70371,
+    17826,
+    68625];
 
 resp = (async function(){
     data = await getoddsdata(sorszamok);
@@ -14,7 +20,6 @@ resp = (async function(){
         d: data[id].dontetlen,
         a: data[id].vendeg
         };
-        console.log(trainedNet(trainData));
-
+        console.log(data[id].sorszam ,trainedNet(trainData));
     }
 })();
